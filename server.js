@@ -19,3 +19,13 @@ app.get("/api/planets", (req, res) => {
     }
   });
 });
+
+app.get("/api/planets/:id", (req, res) => {
+  dao.findPlanet(req.params.id, (planet) => {
+    if (!planet) {
+      res.status(404).end();
+    } else {
+      res.send(planet);
+    }
+  });
+});
